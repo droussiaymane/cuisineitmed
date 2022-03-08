@@ -1,0 +1,171 @@
+{
+  "fakeInfo": [
+    {
+      "id": 1,
+      "name": "Kawtar Retmi",
+      "email": "something@something.fr",
+      "role": "Admin"
+    },
+    {
+      "id": 2,
+      "name": "Imane alaoui",
+      "email": "something@something.fr",
+      "role": "Fournisseur"
+    },
+    {
+      "id": 3,
+      "name": "Rania alami",
+      "email": "something@something.fr",
+      "role": "Fournisseur"
+    },
+    {
+      "id": 4,
+      "name": "Ikram Kharbouch",
+      "email": "something@something.fr",
+      "role": "Fournisseur"
+    }
+  ],
+  "Patients": [
+    {
+      "IPP": 1,
+      "name": "Ikram Kharbouch",
+      "sex": "Female",
+      "birthdate": "01/02/1998",
+      "rnum": 4,
+      "sojourn": "Court séjour",
+      "hospitalization": "Gastro",
+      "entryDate": "01/05/2021"
+    },
+    {
+      "IPP": 2,
+      "name": "Imane alaoui",
+      "sex": "Female",
+      "birthdate": "01/02/1996",
+      "rnum": 4,
+      "sojourn": "Court séjour",
+      "hospitalization": "Gastro",
+      "entryDate": "01/06/2021"
+    }
+  ],
+  "Orders": [
+    {
+      "IPP": 1,
+      "hospitalization": "Cardiologie",
+      "meal": "Dîner"
+    }
+  ],
+  "Sessions": [
+    {
+      "session_id": "8wdf3f487fce22ebqs"
+    }
+  ],
+  "Suppliers": [
+    {
+      "CI": "TR74626",
+      "society": "MediEquip",
+      "identifier": "Mehdi El Kamouni",
+      "contact": "06758945362",
+      "category": "Aliments",
+      "email": "test@test.fr",
+      "specification": "Food"
+    },
+    {
+      "CI": "TR74626",
+      "society": "MediEquip",
+      "identifier": "Mehdi El Kamouni",
+      "contact": "06758945362",
+      "email": "test@test.fr",
+      "category": "Aliments",
+      "specification": "Food"
+    },
+    {
+      "CI": "TR74626",
+      "society": "MediEquip",
+      "identifier": "Mehdi El Kamouni",
+      "contact": "06758945362",
+      "email": "test@test.fr",
+      "category": "Aliments",
+      "specification": "Food"
+    }
+  ],
+  "Criteria": [
+    {
+      "id": 1,
+      "onssa": 1,
+      "iso": 1,
+      "quality": 1,
+      "delay": -1,
+      "conditioning": 1,
+      "temper": 1
+    },
+    {
+      "id": -1,
+      "onssa": 1,
+      "iso": -1,
+      "quality": 1,
+      "delay": -1,
+      "conditioning": 1,
+      "temper": 1
+    }
+  ],
+  "Stock": [
+    {
+      "id": 1,
+      "label": "data",
+      "productName": "data",
+      "supplier": "data",
+      "price": "data",
+      "quantity": "data",
+      "status": "data",
+      "entryDate": "data",
+      "expireDate": "data"
+    }
+  ],
+  "StockProducts": [
+    {
+      "id": 1,
+      "ref": "data",
+      "category": "data",
+      "unity": "data",
+      "designation": "data",
+      "securityStock": "data",
+      "actualStock": "data",
+      "status": "data",
+      "entryDate": "data",
+      "expireDate": "data"
+    },
+    {
+      "id": 2,
+      "ref": "data",
+      "category": "data",
+      "unity": "data",
+      "designation": "data",
+      "securityStock": "data",
+      "actualStock": "data",
+      "status": "data",
+      "entryDate": "data",
+      "expireDate": "data"
+    }
+  ],
+  "Returns": [
+    {
+      "id": 1,
+      "mealType": "Diner",
+      "initialWeight": 45,
+      "afterWeight": 45,
+      "plateCompo": "Reste des aliments",
+      "sortMethod": "Plastique",
+      "recyclingMethod": "Traitement chimique"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
