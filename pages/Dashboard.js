@@ -21,7 +21,7 @@ const Dashboard = () => {
     },
     {
       id: 3,
-      title: "Commande des repas",
+      title: "Commander un repas",
       subtitle: "Lancer et gérer la commande",
       image: "home-images/repas.jpg",
       btn: "Continuer",

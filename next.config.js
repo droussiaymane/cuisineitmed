@@ -13,6 +13,7 @@ module.exports = {
   },
     env: {
       url: 'https://cuisinebackitmed.herokuapp.com',
+      dpi_uri : 'http://localhost:3001/'
     },
     api: {
       bodyParser: false,

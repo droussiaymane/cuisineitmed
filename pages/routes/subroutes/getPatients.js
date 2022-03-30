@@ -19,12 +19,18 @@ const getPatientsApi=async ()=>{
 
 
   const deleteData = async (id) => {
+    console.log(id);
     // delete the data
-    const res = await fetch(`https://cuisinebackitmed.herokuapp.com/v1/patients/${id}`,{
+    /*const res = await fetch(`https://cuisinebackitmed.herokuapp.com/v1/patients/${id}`,{
       method: 'DELETE'
-  }).then(res=>getPatientsApi());
-    
-    
+  }).then(res=>getPatientsApi());*/
+        let rep = await fetch(process.env.dpi_uri+"api/patient/getall/all_",
+        { method: 'DELETE', body: JSON.stringify({ "_id": id })
+      });
+      let reponse = await rep.json();
+      return reponse;
+     
+
   };
 
   return (
@@ -45,18 +51,16 @@ const getPatientsApi=async ()=>{
               <th className="border border-gray-200 p-5 rounded-md">
                 Nom Complet
               </th>
-              <th className="border border-gray-200 p-5 rounded-md">Sexe</th>
+              <th className="border border-gray-200 p-5 rounded-md">Nationalité</th>
               <th className="border border-gray-200 p-5 rounded-md">
                 Date de naissance
               </th>
+              
               <th className="border border-gray-200 p-5 rounded-md">
-                Numéro de chambre
+              Numéro de séjour
               </th>
               <th className="border border-gray-200 p-5 rounded-md">
-                Type de séjour
-              </th>
-              <th className="border border-gray-200 p-5 rounded-md">
-                Service d'hospitalisation
+              Allergie Type
               </th>
               <th className="border border-gray-200 p-5 rounded-md">
                 Date d'entrée
@@ -70,28 +74,25 @@ const getPatientsApi=async ()=>{
               .map((item) => (
                 <tr key={item.ssNumber} className="text-center border">
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.ssNumber}
+                    {item.IPP}
                   </td>
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.fullName}
+                    {item.firstName}
                   </td>
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.gender}
+                    {item.nationality}
                   </td>
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.birthday.slice(0, 10)}
+                    {item.birthDate.slice(0, 10)}
                   </td>
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.roomNumber}
+                    {item.SojournNb}
                   </td>
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.sejourn}
+                    {item.allergyType}
                   </td>
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.disease}
-                  </td>
-                  <td className="border border-gray-200 p-5 rounded-md">
-                    {item.enterDate.slice(0, 10)}
+                    {item.vaccinationDate.slice(0, 10)}
                   </td>
                   <td className="" onClick={()=>{deleteData(item._id)}}>
                     <svg
