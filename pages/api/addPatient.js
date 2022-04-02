@@ -1,7 +1,7 @@
 export default async function addPatient(req, res) {
   
     if (req.method === 'POST') {
-        const result = await fetch("https://cuisinebackitmed.herokuapp.com/v1/patients", {
+        const result = await fetch(process.env.back_url+"v1/patients", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

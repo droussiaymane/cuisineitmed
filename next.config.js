@@ -12,8 +12,10 @@ module.exports = {
     ignoreDuringBuilds: true,
   },
     env: {
-      url: 'https://cuisinebackitmed.herokuapp.com',
-      dpi_uri : 'http://localhost:3001/'
+	  back_url: 'https://cuisine15.herokuapp.com/',
+      dpi_uri : 'https://dpi-eypannxqg-tahafi2001.vercel.app/'
+      //back_url: 'http://localhost:8080/',
+      //dpi_uri : 'http://localhost:3001/'
     },
     api: {
       bodyParser: false,

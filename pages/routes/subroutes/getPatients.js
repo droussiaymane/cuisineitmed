@@ -1,7 +1,7 @@
 import withAuth from '../../Auth/withAuth';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from "react";
-
+import Router from "next/router";
 const Navbar = dynamic(() => import("../../../components/NavBar"), { ssr: false }) //<- set SSr to false
 
 const getPatients = ({ Patients }) => {
@@ -18,18 +18,12 @@ const getPatientsApi=async ()=>{
 
 
 
-  const deleteData = async (id) => {
-    console.log(id);
-    // delete the data
-    /*const res = await fetch(`https://cuisinebackitmed.herokuapp.com/v1/patients/${id}`,{
-      method: 'DELETE'
-  }).then(res=>getPatientsApi());*/
-        let rep = await fetch(process.env.dpi_uri+"api/patient/getall/all_",
-        { method: 'DELETE', body: JSON.stringify({ "_id": id })
-      });
-      let reponse = await rep.json();
-      return reponse;
-     
+  const deleteData = async (ipp) => {
+    const res = await fetch("/api/deletePatient/"+ipp);
+	Router.reload(window.location.pathname);
+	
+	
+	
 
   };
 
@@ -94,7 +88,7 @@ const getPatientsApi=async ()=>{
                   <td className="border border-gray-200 p-5 rounded-md">
                     {item.vaccinationDate.slice(0, 10)}
                   </td>
-                  <td className="" onClick={()=>{deleteData(item._id)}}>
+                  <td className="" onClick={()=>{deleteData(item.IPP)}}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6 mx-auto"

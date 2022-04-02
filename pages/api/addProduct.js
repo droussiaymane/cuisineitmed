@@ -1,7 +1,7 @@
 export default async function addProduct(req, res) {
 
     if (req.method === 'POST') {
-        const result = await fetch("https://cuisinebackitmed.herokuapp.com/v1/stock/products", {
+        const result = await fetch(process.env.back_url+"v1/stock/products", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

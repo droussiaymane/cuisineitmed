@@ -5,20 +5,23 @@ import Navbar from "../components/NavBar";
 import withoutAuth from './Auth/withoutAuth'
 
 // This page shouldn't be accessed if the user is loggedIn
-const Login = () => {
+const signup = () => {
   const router = useRouter();
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
+  const [role, setRole] = useState("Admin");
   const [error, setError] = useState("");
 
   // const { loggedIn, handleAuth } = useContext(AuthContext);
 
-  const login = async (e) => {
+  const signup = async (e) => {
     e.preventDefault();
     // connect to api to check credentials of user
-    const data = { email:email, password:password };
-    const res = await fetch(process.env.back_url+"v1/login", {
-
+    const data = { fullName :fullName, email:email, password:password ,role: role};
+    const res = await fetch(process.env.back_url+"v1/register", {
+ 
       method: "POST",
      
       body:JSON.stringify(data),
@@ -27,12 +30,11 @@ const Login = () => {
 
     
    if (res.status == 200) {
-     localStorage.setItem("loggedIn", true)
-     console.log("authenticated")
      router.push("/")
    } else {
-     console.log(res)
-     setError("False credentials, try again")
+	   let e=await res.json()
+     console.log(e)
+     setError(e.error.details[0].message)
    }
   };
 
@@ -41,8 +43,20 @@ const Login = () => {
       <Navbar />
       <div className="mx-auto w-3/4 mt-10">
         {error !== "" && <ErrorCard error={error} />}
-        <h1 className="text-2xl font-bold">Sign in</h1>
-        <form onSubmit={login} className="flex flex-col mx-auto">
+        <h1 className="text-2xl font-bold">Sign up</h1>
+        <form onSubmit={signup} className="flex flex-col mx-auto">
+			<label className="text-green-500 font-bold text-sm mt-4">
+				Nom :
+			  </label>
+			  <input
+				type="text"
+				value={fullName}
+				onChange={(e) => {
+				  setFullName(e.target.value);
+				}}
+				placeholder="Entrez votre nom"
+				className="border border-green-500 px-2 py-4 rounded-md mt-4"
+			/>
           <label className="text-green-500 font-bold text-sm mt-4">
             Addresse e-mail:
           </label>
@@ -67,11 +81,29 @@ const Login = () => {
             placeholder="Entrez votre mot de passe"
             className="border border-green-500 px-2 py-4 rounded-md mt-4"
           />
+		  <label className="text-green-500 font-bold text-sm mt-4">
+            Role:
+          </label>
+          <select
+            value={role}
+            onChange={(e) => {
+              setRole(e.target.value);
+            }}
+            className="border border-green-500 px-2 py-4 rounded-md mt-4"
+          >
+            <option value="Admin">Admin</option>
+            <option value="Aide soignant">Aide soignant</option>
+            <option value="Agent restauration">Agent restauration</option>
+            <option value="Responsable approvisionnement">
+              Responsable approvisionnement
+            </option>
+            <option value="None">None</option>
+          </select>
           <button
             type="submit"
             className="bg-green-500 px-2 py-4 rounded-md mt-4 text-white font-bold"
           >
-            Login
+            signup
           </button>
         </form>
       </div>
@@ -79,4 +111,4 @@ const Login = () => {
   );
 };
 
-export default withoutAuth(Login); 
+export default withoutAuth(signup); 

@@ -1,7 +1,7 @@
 export default async function addProvider(req, res) {
 
     if (req.method === 'POST') {
-        const result = await fetch("https://cuisinebackitmed.herokuapp.com/v1/providers", {
+        const result = await fetch(process.env.back_url+"v1/providers", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
