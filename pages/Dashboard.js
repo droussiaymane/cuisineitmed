@@ -6,7 +6,7 @@ const Dashboard = () => {
   const HomeComponents = [
     {
       id: 1,
-      title: "Gestion des tâches",
+      title: "Gestion des comptes",
       subtitle: "Gérer les utilisateurs",
       image: "home-images/dashboard.jpg",
       btn: "Continuer",
