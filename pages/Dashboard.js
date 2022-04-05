@@ -2,6 +2,7 @@ import NavCard from "../components/NavCard";
 import withAuth from "./Auth/withAuth";
 
 const Dashboard = () => {
+	
   const HomeComponents = [
     {
       id: 1,
@@ -53,8 +54,13 @@ const Dashboard = () => {
       link: "hygiene",
     },
   ];
-
-  return (
+	if (typeof localStorage !== "undefined") {
+        var role = localStorage.getItem("role");
+      } else {
+        var role = localStorage.setItem("role", false);
+      }
+	if(role!="Admin")HomeComponents.shift();
+	return (
     <>
       <h1 className="text-center text-5xl font-bold text-green-500 mt-10">
         Dashboard

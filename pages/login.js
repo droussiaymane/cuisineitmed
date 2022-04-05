@@ -10,7 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+ 
   // const { loggedIn, handleAuth } = useContext(AuthContext);
 
   const login = async (e) => {
@@ -24,10 +24,12 @@ const Login = () => {
       body:JSON.stringify(data),
       headers: { 'Content-Type': 'application/json' }      // body data type must match "Content-Type" header
     })
-
+	
     
    if (res.status == 200) {
      localStorage.setItem("loggedIn", true)
+	 let message=await res.json()
+	 localStorage.setItem("role", message.message)
      console.log("authenticated")
      router.push("/")
    } else {
