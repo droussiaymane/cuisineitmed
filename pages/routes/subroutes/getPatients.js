@@ -1,7 +1,7 @@
 import withAuth from '../../Auth/withAuth';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from "react";
-
+import Router from "next/router";
 const Navbar = dynamic(() => import("../../../components/NavBar"), { ssr: false }) //<- set SSr to false
 
 const getPatients = ({ Patients }) => {
@@ -18,13 +18,13 @@ const getPatientsApi=async ()=>{
 
 
 
-  const deleteData = async (id) => {
-    // delete the data
-    const res = await fetch(`https://cuisinebackitmed.herokuapp.com/v1/patients/${id}`,{
-      method: 'DELETE'
-  }).then(res=>getPatientsApi());
-    
-    
+  const deleteData = async (ipp) => {
+    const res = await fetch("/api/deletePatient/"+ipp);
+	Router.reload(window.location.pathname);
+	
+	
+	
+
   };
 
   return (
@@ -45,18 +45,16 @@ const getPatientsApi=async ()=>{
               <th className="border border-gray-200 p-5 rounded-md">
                 Nom Complet
               </th>
-              <th className="border border-gray-200 p-5 rounded-md">Sexe</th>
+              <th className="border border-gray-200 p-5 rounded-md">Nationalité</th>
               <th className="border border-gray-200 p-5 rounded-md">
                 Date de naissance
               </th>
+              
               <th className="border border-gray-200 p-5 rounded-md">
-                Numéro de chambre
+              Numéro de séjour
               </th>
               <th className="border border-gray-200 p-5 rounded-md">
-                Type de séjour
-              </th>
-              <th className="border border-gray-200 p-5 rounded-md">
-                Service d'hospitalisation
+              Allergie Type
               </th>
               <th className="border border-gray-200 p-5 rounded-md">
                 Date d'entrée
@@ -70,30 +68,27 @@ const getPatientsApi=async ()=>{
               .map((item) => (
                 <tr key={item.ssNumber} className="text-center border">
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.ssNumber}
+                    {item.IPP}
                   </td>
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.fullName}
+                    {item.firstName}
                   </td>
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.gender}
+                    {item.nationality}
                   </td>
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.birthday.slice(0, 10)}
+                    {item.birthDate.slice(0, 10)}
                   </td>
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.roomNumber}
+                    {item.SojournNb}
                   </td>
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.sejourn}
+                    {item.allergyType}
                   </td>
                   <td className="border border-gray-200 p-5 rounded-md">
-                    {item.disease}
+                    {item.vaccinationDate.slice(0, 10)}
                   </td>
-                  <td className="border border-gray-200 p-5 rounded-md">
-                    {item.enterDate.slice(0, 10)}
-                  </td>
-                  <td className="" onClick={()=>{deleteData(item._id)}}>
+                  <td className="" onClick={()=>{deleteData(item.IPP)}}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-6 w-6 mx-auto"

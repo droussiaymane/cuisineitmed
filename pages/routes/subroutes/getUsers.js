@@ -57,11 +57,38 @@ const getUsers = ( ) => {
      
     }
   };
+  const activateData = async (e) => {
+    // Get the id of the target
+    const target = e.target.id;
+    setId(target);
 
+    const activate = await fetch(
+      "/api/activateUser/" + target,
+      {
+        method: "GET",
+      }
+    );
+
+
+    if (activate.status == 200) {
+ 
+        Router.reload(window.location.pathname);
+        setSuccess(true);
+     
+    } else if (activate.status == 404) {
+    
+        Router.reload(window.location.pathname);
+        setError(true);
+     
+    }
+  };
+  const activeicon=(item)=>{return(!item.active)? <td id={item._id} className="" onClick={activateData}>
+                  <svg id={item._id} className="h-6 w-6 mx-auto" onClick={activateData} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline id={item._id} points="20 6 9 17 4 12"></polyline></svg>
+  </td> : ""}
   return (
     <>
       <Navbar />
-      {success && <SuccessCard message="User was deleted successfully" />}
+      {success && <SuccessCard message="the request is done successfully" />}
       {error && <ErrorCard error="Something went wrong" />}
       <div className="mx-auto w-full">
         <div className="w-3/4 mx-auto">
@@ -96,6 +123,8 @@ const getUsers = ( ) => {
                 <td className="border border-gray-200 p-5 rounded-md">
                   {item.role}
                 </td>
+				
+				
                 <td id={item._id} className="" onClick={deleteData}>
                   <svg
                     id={item._id}
@@ -114,6 +143,7 @@ const getUsers = ( ) => {
                     />
                   </svg>
                 </td>
+				{activeicon(item)}
               </tr>
             ))}
           </tbody>

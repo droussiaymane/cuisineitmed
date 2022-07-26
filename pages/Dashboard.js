@@ -2,10 +2,11 @@ import NavCard from "../components/NavCard";
 import withAuth from "./Auth/withAuth";
 
 const Dashboard = () => {
+	
   const HomeComponents = [
     {
       id: 1,
-      title: "Gestion des tâches",
+      title: "Gestion des comptes",
       subtitle: "Gérer les utilisateurs",
       image: "home-images/dashboard.jpg",
       btn: "Continuer",
@@ -21,7 +22,7 @@ const Dashboard = () => {
     },
     {
       id: 3,
-      title: "Commande des repas",
+      title: "Commander un repas",
       subtitle: "Lancer et gérer la commande",
       image: "home-images/repas.jpg",
       btn: "Continuer",
@@ -53,8 +54,13 @@ const Dashboard = () => {
       link: "hygiene",
     },
   ];
-
-  return (
+	if (typeof localStorage !== "undefined") {
+        var role = localStorage.getItem("role");
+      } else {
+        var role = localStorage.setItem("role", false);
+      }
+	if(role!="Admin")HomeComponents.shift();
+	return (
     <>
       <h1 className="text-center text-5xl font-bold text-green-500 mt-10">
         Dashboard

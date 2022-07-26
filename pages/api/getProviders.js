@@ -1,7 +1,7 @@
 export default async function getProviders(req, res) {
     console.log(process.env.url)
     if (req.method === 'GET') {
-        var result = await fetch("https://cuisinebackitmed.herokuapp.com/v1/providers", {
+        var result = await fetch(process.env.back_url+"v1/providers", {
             method: 'GET',
           });
         result = await result.json();

@@ -61,7 +61,7 @@ const addOrder = () => {
         <h1 className="text-2xl font-bold">Lancer une commande</h1>
         <form onSubmit={addMeal} className="flex flex-col mx-auto">
           <label className="text-green-500 font-bold text-sm mt-4">
-            Numéro de sécurité sociale :
+            IPP :
           </label>
           <input
             type="text"
@@ -69,7 +69,7 @@ const addOrder = () => {
             onChange={(e) => {
               setssNumber(e.target.value);
             }}
-            placeholder="Entrez votre numéro de sécurité sociale"
+            placeholder="Entrez IPP"
             className="border border-green-500 px-2 py-4 rounded-md mt-4"
             required
           />
